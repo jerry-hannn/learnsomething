@@ -16,7 +16,12 @@ public:
     bool isHolding();
 private:
     double balance;
-    bool holding;
+    bool holding = false;
+    int riseStreak = 0;
+    int fallStreak = 0;
+    void buy();
+    void sell();
+    std::vector<float> prices;
 };
 
 #endif //LEARNSOMETHING_HACKATHONBOT_H

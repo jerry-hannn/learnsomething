@@ -1,23 +1,20 @@
 import timeit
+import math
 
 def disasterCode():
-    for i in range(2, 2500):
-        uniquePrimes = prime_factors(i)
-        if not uniquePrimes:
-            uniquePrimes.append(i)
+    prime = [True] * (1000)
+    prime[0] = prime[1] = False
+    listPrimes = [2]
 
-def prime_factors(n):
-    factors = []
-    d = 2
-    while d * d <= n:
-        if (n % d) == 0:
-            factors.append(d)
-            n //= d
-        else:
-            d += 1
-    if n > 1:
-        factors.append(n)
-    return factors
+    for p in range(3, int(math.sqrt(1000)) + 1, 2):
+        if prime[p]:
+            for factor in range(p * p, 1000, 2 * p):
+                prime[factor] = False
+
+    for i in range(3, 1000, 2):
+        if prime[i]:
+            listPrimes.append(i)
+
 
 # Benchmark the code
 if __name__ == "__main__":
